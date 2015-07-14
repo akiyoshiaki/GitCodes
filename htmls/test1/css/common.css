@@ -1,0 +1,55 @@
+/* CSSのコメントはこのように書きます。HTMLのコメントとは違いますよ */
+div {
+color: #666666;
+width: 500px;
+margin-top:20px;
+margin-right:auto;
+margin-left:auto;
+}
+span {
+color:#009900;
+}
+h1 {
+color:#006600;
+font-size:30px;
+}
+
+/*bbb.htmlだけに指定してあったh2要素のCSSも一緒にします*/
+h2 {
+font-size:110%;
+border-top:solid 1px #ccc;
+margin-top:50px;
+}
+
+img {
+float:left;
+margin-right:20px;
+border-style: none;
+}
+a {
+font-size: 150%;
+font-weight: bold;
+color: #FF6666;
+text-decoration: none;
+}
+a:hover {
+color: #9900FF;
+text-decoration: underline;
+font-style: italic;
+}
+
+p#goto-profile a {	
+/*画像のURLは、このCSSファイルからの相対URLに修正する必要があります*/
+background: url(../image/11-5_btn2.gif) no-repeat left top;
+width: 140px;
+height: 36px;
+display: block;
+color: #FFFFFF;
+font-size: 15px;
+line-height: 36px;
+text-align: center;
+}
+p#goto-profile a:hover {
+/*画像のURLは、このCSSファイルからの相対URLに修正する必要があります*/
+background: url(../image/11-5_btn2.gif) no-repeat right top;
+}
