@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script> -->
+
+  <title>javascriptの練習</title>
+</head>
+<body>
+  <h1>あは</h1>
+  <p id="msg"></p>
+  <button id="add">Click!</button>
+    <script src="myscript.js"></script>
+  <script>
+   //DOMの練習
+    var e = document.getElementById("msg");
+    e.textContent = "hello!";
+    e.style.color = "red";
+
+
+    document.getElementById("add").addEventListener("click", function(){
+      var greet = document.createElement("p"),
+          text = document.createTextNode("hello world!");
+      document.body.appendChild(greet).appendChild(text);
+    });
+
+  </script>
+</body>

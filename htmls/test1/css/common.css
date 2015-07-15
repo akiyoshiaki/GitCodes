@@ -1,20 +1,20 @@
-/* CSS‚ÌƒRƒƒ“ƒg‚Í‚±‚Ì‚æ‚¤‚É‘‚«‚Ü‚·BHTML‚ÌƒRƒƒ“ƒg‚Æ‚Íˆá‚¢‚Ü‚·‚æ */
+/* CSSï¿½ÌƒRï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Í‚ï¿½ï¿½Ì‚æ‚¤ï¿½Éï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½BHTMLï¿½ÌƒRï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Æ‚Íˆá‚¢ï¿½Ü‚ï¿½ï¿½ï¿½ */
 div {
-color: #666666;
+color: #d63939;
 width: 500px;
 margin-top:20px;
 margin-right:auto;
 margin-left:auto;
 }
 span {
-color:#009900;
+color:#279372;
 }
 h1 {
 color:#006600;
 font-size:30px;
 }
 
-/*bbb.html‚¾‚¯‚Éw’è‚µ‚Ä‚ ‚Á‚½h2—v‘f‚ÌCSS‚àˆê‚É‚µ‚Ü‚·*/
+/*bbb.htmlï¿½ï¿½ï¿½ï¿½ï¿½Éwï¿½è‚µï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½h2ï¿½vï¿½fï¿½ï¿½CSSï¿½ï¿½ï¿½êï¿½É‚ï¿½ï¿½Ü‚ï¿½*/
 h2 {
 font-size:110%;
 border-top:solid 1px #ccc;
@@ -22,24 +22,23 @@ margin-top:50px;
 }
 
 img {
-float:left;
 margin-right:20px;
 border-style: none;
 }
 a {
 font-size: 150%;
 font-weight: bold;
-color: #FF6666;
+color: #ffbd66;
 text-decoration: none;
 }
 a:hover {
-color: #9900FF;
+color: #430c61;
 text-decoration: underline;
 font-style: italic;
 }
 
-p#goto-profile a {	
-/*‰æ‘œ‚ÌURL‚ÍA‚±‚ÌCSSƒtƒ@ƒCƒ‹‚©‚ç‚Ì‘Š‘ÎURL‚ÉC³‚·‚é•K—v‚ª‚ ‚è‚Ü‚·*/
+p#goto-profile a {
+/* ã‚³ãƒ¡ãƒ³ãƒˆ */
 background: url(../image/11-5_btn2.gif) no-repeat left top;
 width: 140px;
 height: 36px;
@@ -50,6 +49,6 @@ line-height: 36px;
 text-align: center;
 }
 p#goto-profile a:hover {
-/*‰æ‘œ‚ÌURL‚ÍA‚±‚ÌCSSƒtƒ@ƒCƒ‹‚©‚ç‚Ì‘Š‘ÎURL‚ÉC³‚·‚é•K—v‚ª‚ ‚è‚Ü‚·*/
+/*ï¿½æ‘œï¿½ï¿½URLï¿½ÍAï¿½ï¿½ï¿½ï¿½CSSï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‘ï¿½ï¿½ï¿½URLï¿½ÉCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½*/
 background: url(../image/11-5_btn2.gif) no-repeat right top;
 }
