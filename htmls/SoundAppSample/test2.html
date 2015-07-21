@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all"> -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script> -->
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <title>Web APIで音を出そう</title>
+</head>
+<body>
+  <h1>Second Step</h1>
+
+  <table>
+  <tr><td>Type</td><td><select id="type" onchange="Setup()"><option>Sine</option><option>Square</option><option>SawTooth</option><option>Triangle</option></select></td></tr>
+  <tr><td>Freq(Hz)</td><td><input type="range" min="50" max="5000" size="10" id="freq" value="440" onchange="Setup()"/></td></tr>
+  <tr><td>Level</td><td><input type="range" min="0" max="1" step="0.01" size="10" id="level" value="1" onchange="Setup()"/></td></tr>
+  </table>
+  <br/>
+  <button onclick="Setup()">音が出るボタン</button><br/>
+  <script type="text/javascript" src="/docs/waapisim/waapisim.js"></script>
+  <script type="text/javascript">
+
+  //オーディオコンテキスト作成(全く同じっぽい)
+  if(typeof(webkitAudioContext)!=="undefined")
+  var audioctx = new webkitAudioContext();
+  else if(typeof(AudioContext)!=="undefined")
+  var audioctx = new AudioContext();
+
+  var play=0;
+  var osc = audioctx.createOscillator();
+  var gain = audioctx.createGain();
+  //接続
+  osc.connect(gain);
+  gain.connect(audioctx.destination);
+
+
+  function Setup() {
+      if(play == 0) {
+          osc.start(0);
+          play = 1;
+      }
+      //DOMかな？
+      var type = document.getElementById("type").selectedIndex;
+      var freq = parseFloat(document.getElementById("freq").value);
+      var level = parseFloat(document.getElementById("level").value);
+
+      osc.type = ["sine","square","sawtooth","triangle"][type];
+      osc.type = type;
+      osc.frequency.value = freq;
+      gain.gain.value = level;
+  }
+  </script>
+
+</body>
+
+<body>
+<h1>Oscillator Timing Control</h1>
+<br/>
+<button onclick="SetupB()">Start</button><br/>
+<script type="text/javascript" src="/docs/waapisim/waapisim.js"></script>
+<script type="text/javascript">
+
+if(typeof(webkitAudioContext)!=="undefined")
+    var audioctx = new webkitAudioContext();
+else if(typeof(AudioContext)!=="undefined")
+    var audioctx = new AudioContext();
+
+function SetupB() {
+    var t0 = audioctx.currentTime;
+    for(var i = 0; i < 10; ++i) {
+        var osc = audioctx.createOscillator();
+        osc.connect(audioctx.destination);
+        //タイミング制御もできる
+        osc.start(t0 + i * 0.5 + 0.5);
+        osc.stop(t0 + i * 0.5 + 0.6);
+    }
+}
+
+</script>
+</body>
+
+</html>
