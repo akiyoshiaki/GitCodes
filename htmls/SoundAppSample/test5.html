@@ -117,6 +117,7 @@
 
             // 二次フィルターを生成する
             var biquadFilter = audioCtx.createBiquadFilter();
+            //biquadFilter.type = "bandpass";
             biquadFilter.type = "lowshelf";
             biquadFilter.frequency.value = 1000;
             biquadFilter.gain.value = range.value;
@@ -171,40 +172,6 @@
       }
   }
 
-  //フィルタの使い方のところから持ってきた
-  //var analyser2 = audioCtx.createAnalyser();
-  //biquadFilter.connect(analyser2);
-
-  function DrawGraph2() {
-    Analyse();
-    var cv = document.getElementById("cvs");
-    var ctx = cv.getContext("2d");
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(0, 0, 512, 256);
-    ctx.fillStyle = "#009900";
-    for(var i = 0; i < 512; ++i) {
-        var f = audioCtx.sampleRate * i / 1024;
-        y = 128 + (data[i] + 48.16) * 2.56;
-        ctx.fillRect(i, 256 - y, 1, y);
-    }
-    ctx.fillStyle = "#ff8844";
-    for(var d = -50; d < 50; d += 10) {
-        var y = 128 - (d * 256 / 100) | 0;
-        ctx.fillRect(20, y, 512, 1);
-        ctx.fillText(d + "dB", 5, y);
-    }
-    ctx.fillRect(20, 128, 512, 1);
-    for(var f = 2000; f < audioCtx.sampleRate / 2; f += 2000) {
-        var x = (f * 1024 / audioCtx.sampleRate) | 0;
-        ctx.fillRect(x, 0, 1, 245);
-        ctx.fillText(f + "Hz", x - 10, 255);
-    }
-  }
-  function Analyze() {
-    analyser2.smoothingTimeConstant = 0.7;
-    analyser2.fftSize = 1024;
-    analyser2.getFloatFrequencyData(data);
-  }
 
   Setup(analyser);
   setInterval(DrawGraph, 100);
