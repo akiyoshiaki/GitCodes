@@ -1,4 +1,4 @@
-var chap: String?
+ var chap: String?
 
 //変数 var
 //定数 let
@@ -21,6 +21,11 @@ chap = "基本データ型"
 let b = "aaa"
 let c = 50
 let d = b + String(c)
+
+ var a: Bool = true
+ if a {
+    println("a")
+ }
 */
 
 chap = "タプル"
@@ -80,9 +85,10 @@ if score > 80 {
 
 result = score > 80 ? "great" : "not bad"
 */
+ 
+ chap = "switch"
 
-chap = "switch"
-/*
+
 let num = 0
 
 switch num {
@@ -98,7 +104,7 @@ case 7..<9:
 default:
     break
 }
-*/
+
 
 chap = "while"
 /*
@@ -202,7 +208,7 @@ a
 
 
 chap = "列挙型"
-/*
+
 enum Result: Int { //1文字目大文字
     case Success = 0
     case Error // = 1
@@ -222,8 +228,9 @@ r = .Success
 Result.Success.rawValue
 Result.Error.getMessage()
 r.getMessage()
-*/
 
+
+ 
 chap = "クラス"
 /*
 クラス(User) -> インスタンス(Tom, Bob)
@@ -267,7 +274,7 @@ bob.reset()
 
 chap = "プロトコル" //(抽象クラス?)
 //継承関係がないような複数クラスに似た機能をもたせられる
-/*
+
 protocol Student {
     var studentId: String { get set }
     func study()
@@ -311,7 +318,7 @@ tom.level
 tom.level = 8
 tom.score
 //おもしろい
-*/
+
 
 chap = "optional chaining"
 //クラスのプロパティやメソッドが存在するか確認するためのもの
@@ -376,7 +383,7 @@ struct UserStruct{ //継承不可. シンプルな場合は構造体でいいの
         score++ //明示しないとプロパティ書き換え不可
     }
 }
-class User{
+class User1{
     var name: String
     var score: Int = 0
     init(name: String){
@@ -387,7 +394,7 @@ class User{
     }
 }
 
-var tom = User(name: "Tom")
+var tom = User1(name: "Tom")
 var tom2 = tom
 tom2.name = "tom2"
 tom.name //参照渡し
@@ -396,8 +403,49 @@ var bob = UserStruct(name: "Bob")
 var bob2 = bob
 bob2.name = "bob2"
 bob.name //値渡し
-*/
-
+ */
+ 
+ 
+ typealias Pitch = (name: String, height: Int)
+ typealias Position = (name: Int, fret: Int)
+ 
+ public class Chord {
+    //コード名
+    var name: String = "N"
+    init(name: String){
+        self.name = name
+    }
+    
+    //コードで鳴らしたい音(not equal 構成音)
+    //ピッチで構成される
+    var contents = Array<Pitch>()
+    init(pitches: Array<Pitch>){
+        //配列は代入でコピーされる(別インスタンス化)
+        self.contents = pitches
+    }
+    
+    func showContents() {
+        for ele in self.contents {
+            println(ele)
+        }
+    }
+ }
+ var note: Pitch
+ note = ("C", 4)
+ var start: Position
+ start = (2, 1)
+ 
+ //宣言と初期化は別々に！
+ var A_Minor_contents = Array<Pitch>()
+ A_Minor_contents =  [("A",2), ("C", 3), ("E", 3)]
+ var A_Minor = Chord(pitches: A_Minor_contents)
+ A_Minor.showContents()
+ //これでOK!
+ 
+ 
+ //これは不可
+ //var base: Pitch("C", 3)
+ 
 chap = "拡張" //どんなクラスとかにも使える
 /*
 extension String {

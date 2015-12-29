@@ -1,0 +1,13 @@
+<!-- 普通のhtmlとrubyを書く部分だよ -->
+<h1>Projects</h1>
+
+<ul>
+  <% @projects.each do |project| %>
+  <li>
+    <%= link_to project.title, project_path(project) %>
+    <%= link_to "[Edit]", edit_project_path(project) %>
+  </li>
+  <% end %>
+<ul>
+
+<p><%= link_to "Add New!", new_project_path %></p>

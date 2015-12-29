@@ -13,6 +13,7 @@
 		D387F6F81B88AF2400E618E1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D387F6F71B88AF2400E618E1 /* Images.xcassets */; };
 		D387F6FB1B88AF2400E618E1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D387F6F91B88AF2400E618E1 /* LaunchScreen.xib */; };
 		D387F7071B88AF2400E618E1 /* HelpNagoyaSpecialtyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D387F7061B88AF2400E618E1 /* HelpNagoyaSpecialtyTests.swift */; };
+		D387F7111B88B00900E618E1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D387F7101B88B00900E618E1 /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		D387F7001B88AF2400E618E1 /* HelpNagoyaSpecialtyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelpNagoyaSpecialtyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D387F7051B88AF2400E618E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D387F7061B88AF2400E618E1 /* HelpNagoyaSpecialtyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpNagoyaSpecialtyTests.swift; sourceTree = "<group>"; };
+		D387F7101B88B00900E618E1 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				D387F6F01B88AF2400E618E1 /* AppDelegate.swift */,
 				D387F6F21B88AF2400E618E1 /* ViewController.swift */,
 				D387F6F41B88AF2400E618E1 /* Main.storyboard */,
+				D387F7101B88B00900E618E1 /* GameScene.swift */,
 				D387F6F71B88AF2400E618E1 /* Images.xcassets */,
 				D387F6F91B88AF2400E618E1 /* LaunchScreen.xib */,
 				D387F6EE1B88AF2400E618E1 /* Supporting Files */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D387F7111B88B00900E618E1 /* GameScene.swift in Sources */,
 				D387F6F31B88AF2400E618E1 /* ViewController.swift in Sources */,
 				D387F6F11B88AF2400E618E1 /* AppDelegate.swift in Sources */,
 			);

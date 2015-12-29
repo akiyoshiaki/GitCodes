@@ -1,0 +1,36 @@
+<!--とりあえずデータがタイトルしかないのでタイトルを表示 -->
+<h1><%= @project.title %> </h1>
+
+<!-- task一覧を表示 -->
+<!-- タスクの前にはチェックボックスをつけるよ -->
+<!-- DELETEのビューヘルパーはroutesで新規生成されたproject_task_pathﾀﾞﾖ -->
+<!-- したらタスク一覧、つまり同じページに戻る -->
+<ul>
+<% @project.tasks.each do |task| %>
+<li>
+  <%= check_box_tag '', '', task.done, {"data-id" => task.id, "data-project_id" => task.project_id} %>
+  <%= task.title %>
+  <%= link_to "[Delete]", project_task_path(task.project_id, task.id), method: :delete, data: {confirm: "ほんとにｗ？"} %>
+  <!-- <%= link_to "[Delete]", project_task_path(@project, task), method: :delete, data: {confirm: "ほんとにｗ？"} %> -->
+</li>
+<% end %>
+
+<!-- projectに関連しつつtaskをつくる -->
+<!-- has manyによっていろいろとメソッドが追加される. buildもそのひとつで関連先のモデルを新規に生成するらしい.-->
+<li>
+  <%= form_for [@project, @project.tasks.build] do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit%>
+  <% end %>
+</li>
+</ul>
+
+<script>
+//check_boxがクリックされた時の処理を書く
+//この辺、何やってるのかよく分からない。。。
+$(function() {
+  $("input[type=checkbox]").click(function(){
+      $.post("/projects/" + $(this).data("project_id") + "/tasks/" + $(this).data("id") + "/toggle")
+  });
+});
+</script>

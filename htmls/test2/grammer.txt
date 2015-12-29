@@ -1,0 +1,73 @@
+
+1.タグ
+2.属性
+
+<タグ>文章</タグ>
+<タグ 属性名=値 属性名=値>文章</タグ>
+<タグ>
+</タグ>
+
+◆グローバル属性
+id: ひとつしかない要素
+class: 複数ある要素
+style: スタイルを直接書ける
+
+◆セクション
+header:
+footer:
+nav: ナビゲーション
+article: 独立しているコンテンツ
+aside: 副次的なコンテンツ
+section: うまく整理できないもの
+h1 - h6: セクションにつける見出し
+
+◆グルーピング
+p: 段落
+hr: 水平線
+pre: 改行や字下げを保持
+blockquote: 引用
+div: スタイリング
+
+◆リスト
+ol: orderd list
+ul: unordered list
+li: list item
+dl: definition list
+dt: definition term
+dd: definition description
+
+◆テキストレベルのタグ
+strong: 強調ボールド
+br: 改行
+span: スタイル属性で変えたり
+
+
+
+---------------
+CSSの文法
+
+◆セレクタ
+
+セレクタ{ プロパティ名: 値；}
+
+* ←ユニバーサルセレクタ
+要素名, p, h1, divなど
+
+#id
+
+.class
+
+◆セレクタ記法
+a,b ...同じスタイルを複数のセレクタに
+a b ...a配下のbすべてに適応
+a > b ...a直下のみ
+a + b ... aの次以降
+ab ...aかつbの要素に適応
+
+◆属性セレクタ
+a[title] aタグのうちtitle属性もつものだけ
+a[title="hoge"] 完全一致の場合
+a[class~="search"] classタグにsearchを含むものだけ
+
+◆セレクタ擬似クラス
+first-child
