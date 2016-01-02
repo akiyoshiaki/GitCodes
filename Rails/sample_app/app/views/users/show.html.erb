@@ -1,0 +1,15 @@
+<%#仮ビュー %>
+<% provide :title, @user.name %>
+
+<%#無限bootstrap知識がないと無理. %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%# ヘルパーファイルで定義したメソッド %>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+</div>

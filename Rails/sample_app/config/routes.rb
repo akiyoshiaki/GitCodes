@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "contact" => 'static_pages#contact'
   get "signup" => "users#new"
 
+  resources :users
+
 
   ###これらはもう古い.
   # get 'static_pages/help'
