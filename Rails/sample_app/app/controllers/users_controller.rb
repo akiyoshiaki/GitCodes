@@ -14,6 +14,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       #成功した1度目だけに出現するやつ
+      #flash変数に代入したメッセージは、リダイレクトした直後のページで表示できるようになる。
+      #createアクションの後、つまりusersのshowでflashという変数が使える。
       flash[:success] = "Welcome to the Sample App!!!!!"
       #redirect_to user_url(@user) と等価
       redirect_to @user
