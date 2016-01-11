@@ -13,6 +13,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      #ユーザ登録に成功したらログイン
+      log_in @user
       #成功した1度目だけに出現するやつ
       #flash変数に代入したメッセージは、リダイレクトした直後のページで表示できるようになる。
       #createアクションの後、つまりusersのshowでflashという変数が使える。

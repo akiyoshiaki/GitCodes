@@ -24,6 +24,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "password" }
     end
     assert_template 'users/show'
+    #最後にtest_helperで定義したメソッド
+    #ちゃんとログインできているのか確認
+    assert is_logged_in?
   end
 
 end
