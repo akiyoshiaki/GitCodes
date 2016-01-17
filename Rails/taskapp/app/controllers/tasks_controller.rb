@@ -6,7 +6,7 @@ class TasksController < ApplicationController
     #まずprojectを探さないとね…なんかidはxxx_idでとれるっぽいよ。
     @project = Project.find(params[:project_id])
     @task = @project.tasks.create(task_params)
-
+    #binding.pry
     redirect_to project_path(@project)
   end
 
