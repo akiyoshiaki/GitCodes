@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>sample02</title>
+<script type="text/javascript" src="./js/ccv.js"></script>
+<script type="text/javascript" src="./js/face.js"></script>
+</head>
+<body>
+<h1>webRTC with face.js</h1>
+<script type="text/javascript">
+  var src;
+  var dest;
+  var width;
+  var height;
+
+  var image = new Image();
+  image.src = "./laughingman.gif";
+
+  initialize = function() {
+    src = document.getElementById("src");
+    dest = document.getElementById("dest");
+    navigator.webkitGetUserMedia("video,audio",onGotStream,onFailedStream);
+    navigator.getUserMedia =
+        navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia;
+    navigator.getUserMedia(
+
+        //constraints
+        //videoが使いたければvideo書いたり
+        { audio: true, video: true },
+
+        //successCallback
+        //localMediaStreamが獲得される
+        function(localMediaStream) { onGotStream(localMediaStream); },
+
+        //errorCallback
+        function(e) { console.log(e); }
+    );
+  }
+
+  onGotStream = function (stream) {
+    var url = webkitURL.createObjectURL(stream);
+    src.src = url;
+    setInterval(draw,500);
+  }
+
+  onFailedStream = function(error) {
+    alert("onFailedStream");
+  }
+
+  var draw = function () {
+    width = src.videoWidth;
+    height = src.videoHeight;
+
+    var canvas = document.createElement('canvas');
+
+    canvas.width = width;
+    canvas.height = height;
+    var context = canvas.getContext('2d');
+    context.drawImage(src,0,0,width,height);
+
+    dest.width = width;
+    dest.height = height;
+    var context2 = dest.getContext('2d');
+    context2.drawImage(src,0,0,width,height);
+
+    var comp = ccv.detect_objects({"canvas" :ccv.grayscale(canvas),
+      "cascade" : cascade,
+      "interval" : 5,
+      "min_neighbors" : 1 });
+
+    for(var i=0;i < comp.length;i++) {
+      context2.drawImage(image,comp[i].x-30,comp[i].y-30,comp[i].width+60,comp[i].height+60);
+    }
+
+  }
+
+  setTimeout(initialize,1);
+
+</script>
+<video id="src" autoplay></video>
+<canvas id="dest"></canvas>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all"> -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script> -->
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <title>マイク入力を使おう</title>
+</head>
+<body>
+
+<h2>デモ</h2>
+<canvas id="visualizer" style="display:block;background-color:black;"></canvas>
+<a id="mic-button" href="#">mic ON</a>
+
+<script>
+
+/* getUserMediaについて
+プロンプトを表示、ユーザが許可した場合、LocalMediaStream オブジェクトを引数に successCallbackが呼ばれます。
+
+//navigator.getUserMedia ( constraints, successCallback, errorCallback );
+
+*/
+
+// Web Audio APIが使えるか確認しつつ、contextをつくる
+// Web Audioで何かする前に AudioContext を作成する必要があります。
+var MyAudioContext;
+try {
+    //windowからAudioContextつくる
+    MyAudioContext = window.AudioContext || window.webkitAudioContext;
+} catch(e) {
+    throw new Error('Web Audio API is not supported.');
+}
+//全てのできごとはコンテキストの中で起こるのです。
+var context = new MyAudioContext();
+
+// マイクの取得
+function initMic() {
+    navigator.getUserMedia =
+        navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia;
+    navigator.getUserMedia(
+
+        //constraints
+        //videoが使いたければvideo書いたり
+        { audio: true },
+
+        //successCallback
+        //localMediaStreamが獲得される
+        function(localMediaStream) { connectMicToOutput(localMediaStream); },
+
+        //errorCallback
+        function(e) { console.log(e); }
+    );
+}
+
+// マイクの音を出力へ
+var micNode;
+function connectMicToOutput (mic) {
+    //
+    micNode = context.createMediaStreamSource(mic);
+    micNode.connect(context.destination);
+
+    var $canvas = $('#visualizer');
+    console.log($canvas);
+    var analyserNode = context.createAnalyser();
+    micNode.connect(analyserNode);
+
+    // ビジュアライザーの詳細は省略
+    new Visualizer($canvas, analyserNode);
+}
+
+// マイク入力解除の処理
+function disconnect () {
+    micNode.disconnect(context.distination);
+    micNode = null;
+}
+
+// クリックで切り替え
+$('#mic-button').on('click', function (e) {
+    e.preventDefault();
+    //ON -> OFF
+    if (micNode) {
+        disconnect();
+        this.innerHTML = 'mic ON';
+    }
+    //OFF -> ON
+    else{
+        initMic();
+        this.innerHTML = 'mic OFF';
+    }
+});
+</script>
+</body>
+</html>

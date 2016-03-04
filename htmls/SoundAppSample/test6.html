@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- <link href="css/common.css" rel="stylesheet" type="text/css" media="all"> -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script> -->
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <title>Web APIで音を出そう</title>
+</head>
+<body>
+
+<p>aaa</p>
+<video autoplay></video>
+<img src="">
+<canvas style="display:none;"></canvas>
+
+
+
+<script>
+//<video> に autoplay を指示します。これを指示しないと、最初のフレームでフリーズします。controls を追加しても、期待どおりに動作します。
+
+//メディア ファイルへの URL に動画をフィードするのではなく、
+//ウェブカメラを表す LocalMediaStream オブジェクトから取得した Blob URL にフィードします。
+
+/*
+navigator.getUserMedia('video, audio', function(localMediaStream) {
+  var video = document.querySelector('video');
+  video.src = window.URL.createObjectURL(localMediaStream);
+
+  // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+  // See crbug.com/110938.
+  video.onloadedmetadata = function(e) {
+    // Ready to go. Do some stuff.
+  };
+}, onFailSoHard);
+*/
+
+var video = document.querySelector('video');
+var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+var localMediaStream = null;
+
+function snapshot() {
+  if (localMediaStream) {
+    ctx.drawImage(video, 0, 0);
+    // "image/webp" works in Chrome 18. In other browsers, this will fall back to image/png.
+    document.querySelector('img').src = canvas.toDataURL('image/webp');
+  }
+}
+
+video.addEventListener('click', snapshot, false);
+
+// Not showing vendor prefixes or code that works cross-browser.
+navigator.getUserMedia({video: true}, function(stream) {
+  video.src = window.URL.createObjectURL(stream);
+  localMediaStream = stream;
+}, onFailSoHard);
+
+</script>
+</body>
+</html>

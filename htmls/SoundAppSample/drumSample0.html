@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript" src="./buffer-loader.js"></script>
+  <title>Web APIで音を出そう</title>
+</head>
+<body>
+  <h1>First Step</h1>
+  <button onclick="Play()"> 押すと音が出る魔法のボタン </button><br/>
+
+  <script type="text/javascript">
+
+  var context;
+  var bufferLoader;
+
+  function loadAndPlay() {
+      try {
+          context = new AudioContext();
+      }
+      catch(e) {
+          alert("Web Audio API is not supported in this browser");
+      }
+
+          bufferLoader = new BufferLoader(
+              context,
+              [
+              "sounds/kick.wav",
+              "sounds/snare.wav",
+              "sounds/hihat.wav",
+              ],
+              finishedLoading
+          );
+
+          bufferLoader.load();
+       }
+
+       function loadAndPlayStaggered() {
+           try {
+               context = new AudioContext();
+           }
+           catch(e) {
+               alert("Web Audio API is not supported in this browser");
+           }
+
+           bufferLoader = new BufferLoader(
+               context,
+               [
+               "sounds/kick.wav",
+               "sounds/snare.wav",
+               "sounds/hihat.wav",
+               ],
+               finishedLoadingStaggered
+           );
+
+           bufferLoader.load();
+       }
+       function finishedLoading(bufferList) {
+           // Create three sources and buffers
+           var kick = context.createBufferSource();
+           var snare = context.createBufferSource();
+           var hihat = context.createBufferSource();
+           kick.buffer = bufferList[0];
+           snare.buffer = bufferList[1];
+           hihat.buffer = bufferList[2];
+
+           kick.connect(context.destination);
+           snare.connect(context.destination);
+           hihat.connect(context.destination);
+       	// Play them together
+           kick.start(0);
+           snare.start(0);
+           hihat.start(0);
+       }
+       function finishedLoadingStaggered(bufferList) {
+           // Create three sources and buffers
+           var kick = context.createBufferSource();
+           var snare = context.createBufferSource();
+           var hihat = context.createBufferSource();
+           kick.buffer = bufferList[0];
+           snare.buffer = bufferList[1];
+           hihat.buffer = bufferList[2];
+
+           kick.connect(context.destination);
+           snare.connect(context.destination);
+           hihat.connect(context.destination);
+       	// Play them staggered
+           kick.start(0);
+           snare.start(0.125);
+           hihat.start(0.25);
+       }
+
+  </script>
+
+</body>
+</html>

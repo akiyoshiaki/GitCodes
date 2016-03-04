@@ -3,3 +3,8 @@ akiyoshi:
   name: Akiyoshi Aki
   email: mysubstitution@gmail.com
   password_digest: <%= User.digest("password") %>
+
+yoshiaki:
+  name: yoshiaki nishiura
+  email: hogefuga@example.com
+  password_digest: <%= User.digest("password") %>

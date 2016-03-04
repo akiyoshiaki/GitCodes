@@ -16,8 +16,10 @@ class User < ActiveRecord::Base
   #セキュアなパスワード実装
   #ただしこれを有効化するにはpassword_digestのカラムを追加する必要がある。
   has_secure_password
-  #パスワードの検証
-  validates :password, presence: true, length: { minimum: 6 }
+  #パスワード検証
+  #パスワードが空でもプロフ更新できるように
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
 
   #########クラスメソッド
   # よくわからんが、モデルに実装する。

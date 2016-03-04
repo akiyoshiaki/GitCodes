@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       log_in user
       #remember_meするか否かでログインを永続化するか決める
       params[:session][:remember_me] == "1" ? remember(user) : forget(user)
-      redirect_to user_url(user)
+      redirect_back_or user
     else
       #ログイン失敗
       #エラーメッセージ出してからやり直させる
