@@ -1,5 +1,7 @@
-# GitCodes
+# Combustibles
 
- * 勉強用とかの雑多なコード置き場
- 
+* 🔥 **CAUTION: These codes are easily catch fire.** 🔥
+  * I'm writing these codes just for study or fun.
+  * There should be many flaws and errors.
+
 -----
