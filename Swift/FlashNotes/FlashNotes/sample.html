@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta content="text/html" charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="https://widget.songle.jp/v1/api.js"></script> <!-- songle -->
+    <title>動画を再生したい</title>
+    <link rel="stylesheet" href="mystyle.css">
+  </head>
+  <body>
+      <h1>hello</h1>
+      <p>world</p>
+
+      <iframe width="200" height="100"
+          src="http://www.youtube.com/embed/sLAEg5aTXAE?feature=player_detailpage&playsinline=1"
+          frameborder="0"></iframe>
+
+      <script src="https://widget.songle.jp/v1/widgets.js"></script>
+      <!--
+      <script src="https://ongacrest.github.io/songle-widget-api-examples/extras/sw-extra-stats.js"></script>
+       -->
+       <script>
+          
+          window.onload =
+          function()
+          {
+              var songleWidgetElement =
+              SongleWidgetAPI.createSongleWidgetElement({
+                                                        api: "songle-widget-api-example",           // Same option with `data-api` attribute.
+                                                        url: "www.youtube.com/watch?v=o1jAMSQyVPc", // Same option with `data-url` attribute.
+                                                        /*
+                                                        data-api-beat-auto-reload: 1,
+                                                        data-api-chord-auto-reload: 1,
+                                                        data-api-melody-auto-reload: 1,
+                                                        data-api-chorus-auto-reload: 1,
+                                                        */
+                                                        songAutoPlay: true,                        // Same option with `data-song-auto-play` attribute.
+                                                        songAutoLoop: true                         // Same option with `data-song-auto-loop` attribute.
+                                                        //data-yt-ctrl: 1
+                                                        //こういう要素入れると表示されないっぽい...
+                                                        });
+                document.body.appendChild(songleWidgetElement);
+          }
+      window.onSongleWidgetReady =
+      function(apiKey, songleWidget)
+      {
+          switch(songleWidget.mode)
+          {
+              case SongleWidgetAPI.MP3_MODE: // "mp3"
+              print("Songle Widget is mp3 mode.");
+              break;
+              
+              case SongleWidgetAPI.NN_VIDEO_MODE: // "nn-video"
+              print("Songle Widget is nn-video mode.");
+              break;
+              
+              case SongleWidgetAPI.YT_VIDEO_MODE: // "yt-video"
+              alert("Songle Widget is yt-video mode.");
+              break;
+          }
+      }
+      </script>
+
+       <span>wow!</span>
+      <a href="http://www.google.com/">link</a>
+      <a href="nativecall">swift呼び出し</a>
+      <h1>あああ</h1>
+      <div id="content">TEST......</div>
+      <p id="msg"></p>
+      <button id="add">Click!</button>
+      <script>
+
+          //試してみる関数
+          /*
+          function hogeFunction(){
+              document.getElementById("content").innerText = "HEY";
+              alert("HELLO");
+          }
+          */
+      
+      
+      function chordGet(theUrl){
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open( "GET", theUrl, false );
+          xmlHttp.send(null);
+          alert(xmlHttp.responseText);
+          return xmlHttp.responseText;
+      }
+      /*
+      var xmlHttp = new XMLHttpRequest();
+      var theUrl = "https://www.youtube.com/watch?v=o1jAMSQyVPc"
+      xmlHttp.open( "GET", theUrl, false );
+      xmlHttp.onload = function(){
+          alert(xmlHttp.responseText);
+      }*/
+      
+          //DOMの練習
+          var e = document.getElementById("msg");
+          e.textContent = "hello!";
+          e.style.color = "red";
+          
+          document.getElementById("add").addEventListener("click", function(){
+                                                          var greet = document.createElement("p"),
+                                                          text = document.createTextNode("hello world!");
+                                                          document.body.appendChild(greet).appendChild(text);
+                                                          //chordGet("https://www.youtube.com/watch?v=o1jAMSQyVPc");
+                                                          });
+                                                          
+        
+        
+      </script>
+      
+  </body>
+</html>

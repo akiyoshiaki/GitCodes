@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta content="text/html" charset="utf-8">
+        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        <script src="https://widget.songle.jp/v1/api.js"></script> <!-- songle -->
+        <!--
+        <script type="text/javascript">  //youtube API
+            var script = document.createElement( 'script' );
+            script.src = "https://www.youtube.com/iframe_api";
+            var firstScript = document.getElementsByTagName( 'script' )[ 0 ];
+            firstScript.parentNode.insertBefore( script , firstScript );
+        </script>
+         -->
+        <title>songle動画を制御できるかのテスト.しかしaaa.htmlだとなんかしらんけど全然プレイヤが表示されない</title>
+        <link rel="stylesheet" href="mystyle.css">
+    </head>
+    <body>
+        <script src="https://widget.songle.jp/v1/widgets.js"></script>
+        <script>
+  
+            
+            document.getElementsById("play").addEventListener("click", function{
+                                                              window.onSongleWidgetReady =
+                                                              function(apiKey, songleWidget)
+                                                              {
+                                                              songleWidget.play();
+                                                              }
+                                                              });
+                                                              
+
+        </script>
+
+
+    </body>
+
+</html>

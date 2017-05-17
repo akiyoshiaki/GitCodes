@@ -1,0 +1,31 @@
+
+
+p{
+    border: solid 1px silver;
+    margin: 5px;
+    /* display: inline-block */
+}
+body{
+    margin: 0;
+}
+
+img {
+    float: right;
+    width: 100px;
+}
+h2 {
+    clear: right;≤
+}
+/*
+div{
+    Background: skyblue;
+    overflow: scroll;
+    float: right;
+}
+*/
+
+#chords{
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+}

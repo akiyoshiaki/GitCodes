@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta content="text/html" charset="utf-8">
+            <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+            <script src="https://widget.songle.jp/v1/api.js"></script> <!-- songle -->
+            <title>動画を再生したい</title>
+            <link rel="stylesheet" href="mystyle.css">
+                </head>
+    <body>
+        <script src="https://widget.songle.jp/v1/widgets.js"></script>
+        <!-- メルト -->
+        <!-- <div data-api="songle-widget-api-example" data-url="www.youtube.com/watch?v=o1jAMSQyVPc" id="songle-widget" ></div> -->
+        <!-- チェリー -->
+        <div data-api="songle-widget-api-example" data-url="www.youtube.com/watch?v=Eze6-eHmtJg" id="songle-widget" ></div>
+        <!-- data-songle-widget-size-w="150" data-songle-widget-size-h="80" data-video-player-size-w="150" data-video-player-size-h="80"　-->
+        </div>
+        <script src="https://widget.songle.jp/v1/widgets.js"></script>
+        <!--
+         <script src="https://ongacrest.github.io/songle-widget-api-examples/extras/sw-extra-stats.js"></script>
+         -->
+        
+        <script>
+
+            //プレイヤ呼び出しはどこに書いても末尾にdiv要素として追加される
+            //というか埋め込みコード生成のAPIがコレ.
+            /*
+            window.onload =
+            function()
+            {
+                var songleWidgetElement =
+                SongleWidgetAPI.createSongleWidgetElement({
+                                                          api: "songle-widget-api-example",           // Same option with `data-api` attribute.
+                                                          url: "www.youtube.com/watch?v=o1jAMSQyVPc", // Same option with `data-url` attribute.
+                                                          songAutoPlay: false,                        // Same option with `data-song-auto-play` attribute.
+                                                          songAutoLoop: true                         // Same option with `data-song-auto-loop` attribute.
+                                                          //data-yt-ctrl: 1
+                                                          //songleWidgetSizeW: auto,
+                                                          //songleWidgetSizeH: auto
+                                                          //こういう要素入れると表示されないっぽい...
+                                                          });
+                                                          document.body.appendChild(songleWidgetElement);
+            }
+             */
+        /*
+        function resetBeats(){
+            document.getElementById("1st").innerText = "◯"
+            document.getElementById("2nd").innerText = "◯"
+            document.getElementById("3rd").innerText = "◯"
+            document.getElementById("4th").innerText = "◯"
+        }
+        */
+        //初期化成功のタイミングで呼ばれる
+        window.onSongleWidgetReady =
+        function(apiKey, songleWidget)
+        {
+            //この中にイベントリスナーを書けばよい！！！
+
+        songleWidget.on("chordPlay",
+                            function(e){
+                            //document.getElementById("chords").innerText = e.chord.prev.name + " " + e.chord.name + " " + e.chord.next.name;
+                            if (e.chord.next !== "undefined"){
+                            document.getElementById("chords").innerText = e.chord.name + "　　　" + e.chord.next.name;
+                            }
+                            console.log(e.chord);
+                            });
+             
+
+          songleWidget.on("beatPlay",
+                          function(e)
+                          {
+                          switch(e.beat.position)
+                          {
+                          case 1:
+                          // You can write code for the 1st beat ...
+                          document.getElementById("beats").innerText = "● ◯ ◯ ◯"
+                          console.log("1st beat");
+                          break;
+                          
+                          case 2:
+                          // You can write code for the 2nd beat ...
+                          document.getElementById("beats").innerText = "◯ ● ◯ ◯"
+                          console.log("2nd beat");
+                          break;
+                          
+                          case 3:
+                          // You can write code for the 3rd beat ...
+                          document.getElementById("beats").innerText = "◯ ◯ ● ◯"
+                          console.log("3rd beat");
+                          break;
+                          
+                          case 4:
+                          // You can write code for the 4th beat ...
+                          document.getElementById("beats").innerText = "◯ ◯ ◯ ●"
+                          console.log("4th beat");
+                          break;
+                          }
+                          });
+                          
+
+          
+          document.getElementById("play").addEventListener("click",function(){
+                                                           songleWidget.play();
+                                                           });
+                                                           document.getElementById("pause").addEventListener("click",function(){
+                                                                    songleWidget.pause();
+                                                                                });
+                                                                                                             document.getElementById("stop").addEventListener("click",function(){
+                                                                                                                                                              songleWidget.stop();
+                                                                                                                                                              });
+
+                                                                                                                                                              
+                                                                                                                                                              
+      }
+
+      function chordGet(theUrl){
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open( "GET", theUrl, false );
+          xmlHttp.send(null);
+          alert(xmlHttp.responseText);
+          return xmlHttp.responseText;
+      }
+      /*
+      var xmlHttp = new XMLHttpRequest();
+      var theUrl = "https://www.youtube.com/watch?v=o1jAMSQyVPc"
+      xmlHttp.open( "GET", theUrl, false );
+      xmlHttp.onload = function(){
+          alert(xmlHttp.responseText);
+      }*/
+      
+      
+        
+        
+      </script>
+        <p>
+      <button id="add">Click!</button>
+      <button id="play">Play!</button>
+      <button id="pause">Pause!</button>
+      <button id="stop">stop!</button>
+      </p>
+      <p>
+        <span id="beats">- - - -</span>
+      </p>
+      <!-- ほんとはもっと細分化したいけどDOMが重いらしいので...-->
+      <p>
+        <span id="chord-cap">NOW next</span>
+      </p>
+      <p>
+        <span id="chords">N   N</span>
+      </p>
+    </body>
+</html>
